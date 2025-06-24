@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div><a href="/hello">Greetings</a></div>
+<div><a href="/status">Server status</a></div>
+<form onsubmit="sendName(); return false;" >
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Enviar</button>
+</form>
+<label id="greet-name"></label>
+<script>
+    function sendName() {
+   const name = document.getElementById("name").value;
+   fetch("http://localhost:8080/hello?name="+name)
+    .then(response => response.text())
+    .then(text => {
+    document.getElementById("greet-name").innerHTML = text;    })
+    .catch(err => console.error("Error al enviar:", err));  }
+
+</script>
+</body>
+</html>
